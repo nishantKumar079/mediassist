@@ -9,16 +9,18 @@ export default async function handler(req, res) {
   }
 
   // Basic origin check — only allow your own domain
-  const origin = req.headers.origin || "";
- const allowed = [
-  "http://localhost:5500",
-  "http://127.0.0.1:5500",
-  "https://mediassist-pied.vercel.app"
-  ];
+//   const origin = req.headers.origin || "";
+//  const allowed = [
+//   "http://localhost:5500",
+//   "http://127.0.0.1:5500",
+//   "https://mediassist-pied.vercel.app"
+//   ];
 
-  if (!allowed.includes(origin)) {
-    return res.status(403).json({ error: "Forbidden" });
-  }
+//   if (!allowed.includes(origin)) {
+//     return res.status(403).json({ error: "Forbidden" });
+//   }
+const origin = req.headers.origin || req.headers.referer || "";
+res.setHeader("Access-Control-Allow-Origin", "*");
 
   // CORS headers
   res.setHeader("Access-Control-Allow-Origin", origin);
