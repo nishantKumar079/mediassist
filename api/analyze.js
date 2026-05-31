@@ -38,7 +38,7 @@ res.setHeader("Access-Control-Allow-Origin", "*");
     const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
     const GEMINI_MODEL   = "gemini-2.5-flash";
     const GEMINI_URL     = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
-    console.log("API Key exists:", !!process.env.GEMINI_API_KEY);
+    // console.log("API Key exists:", !!process.env.GEMINI_API_KEY);
     const geminiRes = await fetch(GEMINI_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -51,7 +51,7 @@ res.setHeader("Access-Control-Allow-Origin", "*");
     return res.status(geminiRes.status).json(data);
 
   } catch (err) {
-    console.error("Serverless error:", err);
+    // console.error("Serverless error:", err);
     return res.status(500).json({ error: "Internal server error" });
   }
 }

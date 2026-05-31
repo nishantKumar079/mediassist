@@ -5,6 +5,7 @@
 
 // ── CONFIG ──────────────────────────────────────────────────
 
+
 const MAX_UPLOADS     = 1;
 const MAX_CHATS       = 5;
 const MAX_FILE_MB     = 5;
@@ -331,7 +332,7 @@ async function callGemini(userParts) {
   //   })
   // });
 
-  //const res = await fetchWithRetry("/api/analyze", {
+//  const res = await fetch(GEMINI_URL, {
   const res = await fetch("/api/analyze", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
@@ -550,8 +551,8 @@ function handleFile(file) {
     const result   = e.target.result;
     const mime = "image/jpeg"; // always send as jpeg after resize
     const base64 = await resizeImage(file);
-    console.log("Base64 length:", base64.length);
-    console.log("Estimated KB:", Math.round(base64.length * 0.75 / 1024));
+    // console.log("Base64 length:", base64.length);
+    // console.log("Estimated KB:", Math.round(base64.length * 0.75 / 1024));
     if (!ALLOWED_MIME.includes(mime)) { appendError(t("errorFileType")); return; }
 
     incr(SK_UPLOADS);
